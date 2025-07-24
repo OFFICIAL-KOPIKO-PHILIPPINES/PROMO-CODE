@@ -27,6 +27,33 @@
             padding: 0 20px;
         }
 
+        /* --- NEW: Scrolling Winner Banner --- */
+        .scrolling-winner-banner {
+            background-color: #fffde7; /* Light creamy yellow */
+            color: #A42A28; /* Kopiko Red */
+            padding: 6px 0;
+            font-size: 0.85em;
+            font-weight: 500;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            z-index: 1001; /* Position it above the sticky nav */
+        }
+
+        .scrolling-winner-banner p {
+            display: inline-block;
+            padding-left: 100%; /* Starts the text off-screen to the right */
+            animation: marquee-animation 25s linear infinite;
+            margin: 0;
+            will-change: transform; /* Performance hint for the browser */
+        }
+
+        @keyframes marquee-animation {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-200%); } /* Adjust this value based on text length to ensure it scrolls completely off-screen */
+        }
+
         /* --- Header --- */
         .header {
             background-color: #2F5233;
@@ -94,6 +121,7 @@
             font-size: 0.9em;
             border-radius: 20px;
             transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
         }
         .nav-menu a:hover, .nav-menu a.active {
             background-color: #2F5233;
@@ -265,6 +293,7 @@
             box-shadow: 0 5px 25px rgba(0,0,0,0.2);
             transform: scale(0.9);
             transition: transform 0.3s;
+            position: relative;
         }
         .modal-overlay.show .modal-box {
             transform: scale(1);
@@ -314,6 +343,112 @@
             transition: color 0.3s;
         }
         .modal-close-btn:hover { color: #333; }
+
+        /* --- NEW REDEEM MODAL STYLES --- */
+        #redeem-view-mobile-input, #redeem-view-congrats {
+             text-align: center;
+        }
+        #redeem-mobile-number {
+            width: 80%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        #redeem-mobile-number-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+            display: block;
+        }
+        #verify-number-btn {
+            background-color: #2F5233;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        #verify-number-btn:hover {
+            background-color: #1e3a22;
+        }
+        #redeem-error-message {
+            color: #A42A28;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+        }
+
+        .congrats-message h3 {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #2F5233;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .code-container {
+            background-color: #f0f0f0;
+            border: 2px dashed #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            max-width: 300px;
+        }
+        #redeem-code-display {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 2px;
+        }
+        #copy-code-icon {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+        }
+         #copy-feedback {
+            font-size: 0.8em;
+            color: #2F5233;
+            font-weight: bold;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #copy-feedback.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .redeem-instructions {
+            color: #A42A28;
+            font-weight: 500;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+        }
+        #proceed-to-gcash-btn {
+            display: inline-block;
+            background-color: #0066CC;
+            color: white;
+            padding: 12px 40px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        #proceed-to-gcash-btn:hover {
+            background-color: #004c99;
+        }
+
 
         /* --- Winner Modal Styles --- */
         .winner-section {
@@ -414,6 +549,11 @@
 </head>
 <body>
 
+    <!-- NEW: Scrolling Winner Banner -->
+    <div class="scrolling-winner-banner">
+        <p id="winner-text"></p>
+    </div>
+
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -433,10 +573,11 @@
     <nav class="nav-menu">
         <ul>
             <li><a href="#promo-form-section" id="nav-submit">SUBMIT PROMO CODE</a></li>
-            <li><a href="#" id="nav-prizes">PRIZES</a></li>
-            <li><a href="#" id="nav-winners">WINNERS</a></li>
-            <li><a href="#" id="nav-duration">PROMO DURATION</a></li>
-            <li><a href="#" id="nav-privacy">DATA PRIVACY</a></li>
+            <li><a id="nav-redeem">REDEEM CODE</a></li> <!-- NEW MENU ITEM -->
+            <li><a id="nav-prizes">PRIZES</a></li>
+            <li><a id="nav-winners">WINNERS</a></li>
+            <li><a id="nav-duration">PROMO DURATION</a></li>
+            <li><a id="nav-privacy">DATA PRIVACY</a></li>
         </ul>
     </nav>
 
@@ -462,7 +603,7 @@
             
             <section class="announcement-box">
                 <h2>ANNOUNCEMENT:</h2>
-                <p>We are back online. Resend your codes now!<br><br>Sa lahat ng sumubok magsend ng promo codes simula July 10–July 17, 2025, maari na ulit kayong mag send. please resend your promo codes for a chance to win GCash araw-araw or ₱1 Million weekly.<br><br>Maraming salamat sa inyong pagtangkilik!</p>
+                <p>We are back online. Resend your codes now!<br><br>Please resend your promo codes for a chance to win GCash araw-araw or ₱1 Million weekly.<br><br>Maraming salamat sa inyong pagtangkilik!</p>
             </section>
 
             <section id="promo-form-section" class="promo-section">
@@ -501,6 +642,47 @@
     </footer>
 
     <!-- MODALS -->
+    
+    <!-- NEW REDEEM CODE MODAL -->
+    <div id="redeem-modal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="modal-close-btn">×</span>
+            <h2>Redeem Your Prize</h2>
+            
+            <!-- Step 1: Mobile Number Input -->
+            <div id="redeem-view-mobile-input">
+                <p>Please enter your mobile number.</p>
+                <input type="tel" id="redeem-mobile-number" placeholder="09xxxxxxxxx">
+                <label id="redeem-mobile-number-label" for="redeem-mobile-number">Enter your mobile number to proceed.</label>
+                <p id="redeem-error-message">The mobile number you entered is incorrect. Please try again.</p>
+                <button id="verify-number-btn">Verify Number</button>
+            </div>
+
+            <!-- Step 2: Congratulations & Code -->
+            <div id="redeem-view-congrats" style="display: none;">
+                <div class="congrats-message">
+                    <h3>Congratulations! 🎉 You've won ₱5 from Kopiko!</h3>
+                    <p>Keep sending codes for a chance to win ₱1 Million!</p>
+                </div>
+
+                <div class="code-container">
+                    <span id="redeem-code-display"></span>
+                    <svg id="copy-code-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </div>
+                <div id="copy-feedback">Copied!</div>
+
+                <p class="redeem-instructions">
+                    Copy the code and paste it to redeem your reward. Please note you can only use the code once. Please input the right GCash number on the next page.
+                </p>
+
+                <a id="proceed-to-gcash-btn" href="https://m.gcash.com/gcashapp/gcash-redeem-code-web/3.0.0/index.html#/?bizType=KopikoBlancaPromoP5" target="_blank">
+                    Proceed to GCash
+                </a>
+            </div>
+        </div>
+    </div>
+
+
     <div id="prizes-modal" class="modal-overlay">
         <div class="modal-box">
             <span class="modal-close-btn">×</span>
@@ -608,9 +790,70 @@
     </div>
 
 
-    <!-- UPDATED SCRIPT FOR MODALS AND DYNAMIC REFRESH -->
+    <!-- =================== START: SCRIPT SECTION =================== -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+        // --- NEW: SCROLLING BANNER SCRIPT ---
+        const winnerTextElement = document.getElementById('winner-text');
+
+        function generateMaskedName() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let name = '';
+            // Generate a random name-like string (e.g., 6 chars)
+            for (let i = 0; i < 6; i++) {
+                name += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            // Mask it like W**T**ED
+            return `${name.charAt(0)}**${name.charAt(3)}**${name.charAt(5)}D`;
+        }
+
+        function updateWinnerBanner() {
+            if (!winnerTextElement) return;
+
+            // 1. Generate random prize
+            const prizes = [5, 10, 20, 50];
+            const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
+
+            // 2. Generate random phone number and mask it
+            // Generates a random 9-digit number and prepends '09'
+            const randomNumberPart = Math.floor(100000000 + Math.random() * 900000000).toString();
+            const fullNumber = '09' + randomNumberPart;
+            const maskedNumber = `${fullNumber.substring(0, 4)}***${fullNumber.substring(7)}`;
+
+            // 3. Generate masked name initial
+            const maskedName = generateMaskedName();
+            
+            // 4. Update the text content
+            winnerTextElement.textContent = `🎉 Congratulations ${maskedNumber} (${maskedName}) on winning ₱${randomPrize}! Keep sending entries!`;
+        }
+        
+        // Initial call to populate the banner immediately
+        updateWinnerBanner(); 
+        // Set an interval to update the banner every 1 minute (60,000 milliseconds)
+        setInterval(updateWinnerBanner, 60000);
+
+
+        // --- DATA FOR REDEEM FEATURE ---
+        const validMobileNumbers = [
+              "09674824620",
+             // "09123456789",
+             // "09987654321",
+             // Add up to 10 numbers here
+        ];
+
+        const redeemCodes = [
+            "WEVYFYURQB9",
+            "ABCN1234XYZ",
+            "DEFO5678UVW",
+            "GHIJ9012RST",
+            "KLMN3456PQR",
+            "OPQR7890LMN",
+            "STUV1234IJK",
+            "WXYZ5678EFG",
+            "BCDE9012ABC",
+            "FGHI3456DEF"
+        ];
         
         let gcashWinnerInterval = null;
 
@@ -659,14 +902,7 @@
                 behavior: 'smooth'
             });
         });
-
-        const modalTriggers = {
-            'nav-prizes': 'prizes-modal',
-            'nav-winners': 'winners-modal',
-            'nav-duration': 'duration-modal',
-            'nav-privacy': 'privacy-modal'
-        };
-
+        
         const openModal = (modalId) => {
             const modal = document.getElementById(modalId);
             if (modal) {
@@ -684,7 +920,18 @@
                 if (modal.id === 'winners-modal') {
                     clearInterval(gcashWinnerInterval);
                 }
+                if (modal.id === 'redeem-modal') {
+                    resetRedeemModal();
+                }
             }
+        };
+
+        const modalTriggers = {
+            'nav-redeem': 'redeem-modal',
+            'nav-prizes': 'prizes-modal',
+            'nav-winners': 'winners-modal',
+            'nav-duration': 'duration-modal',
+            'nav-privacy': 'privacy-modal'
         };
 
         for (const triggerId in modalTriggers) {
@@ -711,6 +958,93 @@
             });
         });
 
+        // --- REDEEM CODE LOGIC ---
+        const redeemMobileInput = document.getElementById('redeem-mobile-number');
+        const verifyBtn = document.getElementById('verify-number-btn');
+        const errorMsg = document.getElementById('redeem-error-message');
+        
+        const mobileInputView = document.getElementById('redeem-view-mobile-input');
+        const congratsView = document.getElementById('redeem-view-congrats');
+        const codeDisplay = document.getElementById('redeem-code-display');
+        const copyIcon = document.getElementById('copy-code-icon');
+        const copyFeedback = document.getElementById('copy-feedback');
+
+        const resetRedeemModal = () => {
+            mobileInputView.style.display = 'block';
+            congratsView.style.display = 'none';
+            redeemMobileInput.value = '';
+            errorMsg.style.display = 'none';
+            copyFeedback.classList.remove('show');
+        };
+        
+        verifyBtn.addEventListener('click', () => {
+            const enteredNumber = redeemMobileInput.value.trim();
+            const numberIndex = validMobileNumbers.indexOf(enteredNumber);
+            
+            if (numberIndex !== -1) {
+                errorMsg.style.display = 'none';
+                const codeToDisplay = redeemCodes[numberIndex] || redeemCodes[Math.floor(Math.random() * redeemCodes.length)];
+                codeDisplay.textContent = codeToDisplay;
+                mobileInputView.style.display = 'none';
+                congratsView.style.display = 'block';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        function copyTextToClipboard(text) {
+            return new Promise((resolve, reject) => {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(resolve).catch(reject);
+                } else {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.top = '-9999px';
+                    textArea.style.left = '-9999px';
+
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+
+                    try {
+                        const successful = document.execCommand('copy');
+                        if (successful) {
+                            resolve();
+                        } else {
+                            reject(new Error('Fallback: Copy command was unsuccessful.'));
+                        }
+                    } catch (err) {
+                        reject(err);
+                    }
+
+                    document.body.removeChild(textArea);
+                }
+            });
+        }
+
+        copyIcon.addEventListener('click', () => {
+            const code = codeDisplay.textContent;
+            if (!code) return;
+
+            copyTextToClipboard(code).then(() => {
+                copyFeedback.textContent = 'Copied!';
+                copyFeedback.style.color = '#2F5233';
+                copyFeedback.classList.add('show');
+                setTimeout(() => {
+                    copyFeedback.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy code: ', err);
+                copyFeedback.textContent = 'Copy Failed!';
+                copyFeedback.style.color = '#A42A28';
+                copyFeedback.classList.add('show');
+                setTimeout(() => {
+                    copyFeedback.classList.remove('show');
+                }, 3000);
+            });
+        });
+
         window.addEventListener('pageshow', function(event) {
             if (event.persisted) {
                 window.location.reload();
@@ -718,6 +1052,7 @@
         });
     });
     </script>
+    <!-- =================== END: SCRIPT SECTION =================== -->
 
 </body>
 </html>
