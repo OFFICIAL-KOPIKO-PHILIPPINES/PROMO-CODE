@@ -170,12 +170,12 @@
             border: 1px solid #D4AC0D;
             border-left: 5px solid #D4AC0D;
             padding: 20px 25px;
-            margin-bottom: 40px;
+            margin-bottom: 20px; /* Adjusted margin */
             border-radius: 8px;
         }
         
         .announcement-box h2 {
-            font-size: 1.3em;
+            font-size: 0.9em;
             color: #A42A28;
             margin-top: 0;
             margin-bottom: 10px;
@@ -186,6 +186,9 @@
             font-size: 0.9em;
             line-height: 1.5;
         }
+
+     
+
 
         .promo-section {
             background-color: #ffffff;
@@ -590,11 +593,12 @@
             <img class="slide" src="https://i.ibb.co/pvkKBDM7/1752906963439.jpg" alt="Kopiko Promo Image 5">
             <img class="slide" src="https://i.ibb.co/SDFG5Q7T/1752906958312.jpg" alt="Kopiko Promo Image 6">
             <img class="slide" src="https://i.ibb.co/nqnWTnB6/1752905058717.jpg" alt="Kopiko Promo Image 1">
-            <img class="slide" src="https://i.ibb.co/1wtRPKX/Screenshot-2025-07-19-13-20-47-89-f598e1360c96b5a5aa16536c303cff92.jpg" alt="Kopiko Promo Image 2">
+            <img class="slide" src="https://i.ibb.co/mCH86Fbz/1753443034095.jpg" alt="Kopiko Promo Image 2">
             <img class="slide" src="https://i.ibb.co/vFKBkZr/1752906975200.jpg" alt="Kopiko Promo Image 3">
             <img class="slide" src="https://i.ibb.co/C3Pvxmv0/1752906968453.jpg" alt="Kopiko Promo Image 4">
             <img class="slide" src="https://i.ibb.co/pvkKBDM7/1752906963439.jpg" alt="Kopiko Promo Image 5">
             <img class="slide" src="https://i.ibb.co/SDFG5Q7T/1752906958312.jpg" alt="Kopiko Promo Image 6">
+           <img class="slide" src="https://i.ibb.co/m5n3NHCH/IMG-20250720-165617.jpg" alt="Kopiko Promo Image 7"> 
         </div>
     </div>
 
@@ -602,8 +606,16 @@
         <div class="container">
             
             <section class="announcement-box">
-                <h2>ANNOUNCEMENT:</h2>
+                <h2>ANNOUNCEMENT and UPDATES:</h2>
                 <p>We are back online. Resend your codes now!<br><br>Please resend your promo codes for a chance to win GCash araw-araw or ₱1 Million weekly.<br><br>Maraming salamat sa inyong pagtangkilik!</p>
+               <h2>WINNER OF ₱1 MILLION (July 25, 2025)</h2>
+               
+               <p>Congratulations to Glaiza Mae R. Apus from Mindanao,this week's ₱1 MILLION winner in the Kopiko Blanca Unlicash Araw-Araw Promo!<br><br>Stay tuned for the next winner announcement on Friday, August 1, 2025</p>
+            </section>
+            
+            <!-- NEW: Small Update Box (conditionally displayed) -->
+            <section id="weekly-update-box" class="update-box" style="display: none;">
+                 <p>🎉 Congratulations to our latest ₱1 Million winner, <span class="winner-name">Glaiza Mae R. Apus</span> from Mindanao! Abangan ang susunod na winner sa Friday!</p>
             </section>
 
             <section id="promo-form-section" class="promo-section">
@@ -719,6 +731,7 @@
                         </table>
                     </div>
                 </div>
+                
 
                 <div class="winner-section">
                      <h3>Weekly ₱1 Million Winners</h3>
@@ -750,6 +763,11 @@
                     <p>Congratulations, Ryan Joseph Joaquin Pacunana ng South Luzon! Ikaw ang masuwerteng nanalo ng ₱1 MILLION sa Kopiko Blanca Unlicash Araw-Araw Promo ngayong linggo! 🥳<br>Abangan ang tawag mula sa official Kopiko Coffee para sa instructions kung paano mo makukuha ang iyong premyo.<br>Gusto mo rin ba ng chance na manalo ng ₱1 MILLION kada linggo or GCash araw-araw? Ipadala na ang iyong entries sa official Kopiko Coffee Messenger!<br>📣 Abangan ang susunod na winner next Friday, July 18, 2025!<br><small>The weekly raffle draws are supervised and verified by official DOH FDA CFRR Representatives.<br>Per DOH-FDA CFRR Permit No. 1800 s. 2024</small></p>
                     <div class="winner-photo"><img src="https://i.ibb.co/N2y1mZ8Z/1752971756372.jpg" alt="Winner Ryan Joseph Joaquin Pacunana"></div>
                 </div>
+               
+                <div class="winner-section">
+                    <p>Congratulations, Glaiza Mae R. Apus from Mindanao! Ikaw ang masuwerteng nanalo ng ₱1 MILLION sa Kopiko Blanca Unlicash Araw-Araw Promo ngayong linggo! 🥳<br>Abangan ang tawag mula sa official Kopiko Coffee para sa instructions kung paano mo makukuha ang iyong premyo.<br>Gusto mo rin ba ng chance na manalo ng ₱1 MILLION kada linggo or GCash araw-araw? Ipadala na ang iyong entries sa official Kopiko Coffee Messenger!<br>📣 Abangan ang susunod na winner next Friday, August 1, 2025!<br><small>The weekly raffle draws are supervised and verified by official DOH FDA CFRR Representatives.<br>Per DOH-FDA CFRR Permit No. 1800 s. 2024</small></p>
+                    <div class="winner-photo"><img src="https://i.ibb.co/mCH86Fbz/1753443034095.jpg" alt="Winner 7"></div>
+                </div> 
 
             </div>
         </div>
@@ -794,7 +812,20 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        // --- NEW: SCROLLING BANNER SCRIPT ---
+        // --- NEW: SCRIPT FOR WEEKLY UPDATE BOX ---
+        const weeklyUpdateBox = document.getElementById('weekly-update-box');
+        if (weeklyUpdateBox) {
+            const today = new Date().getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+            // Show the box on Monday (1), Tuesday (2), Wednesday (3), and Thursday (4)
+            if (today >= 1 && today <= 4) {
+                weeklyUpdateBox.style.display = 'block';
+            } else {
+                weeklyUpdateBox.style.display = 'none';
+            }
+        }
+
+
+        // --- SCROLLING BANNER SCRIPT ---
         const winnerTextElement = document.getElementById('winner-text');
 
         function generateMaskedName() {
@@ -909,6 +940,7 @@
                 modal.classList.add('show');
                 if (modalId === 'winners-modal') {
                     generateGcashWinners();
+                    if (gcashWinnerInterval) clearInterval(gcashWinnerInterval); // Clear previous interval
                     gcashWinnerInterval = setInterval(generateGcashWinners, 60000);
                 }
             }
