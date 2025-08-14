@@ -79,13 +79,24 @@
 
         .header .kopiko-white { color: #fff; }
         .header .coffee-yellow { color: #FFC72C; }
-        .header .verified-badge { width: 28px; height: 28px; }
-        .header .tagline {
-            font-size: 0.9rem;
-            font-weight: 300;
+        .header .new-tagline {
+            font-size: 1.1rem;
+            font-weight: 400;
             margin-top: 8px;
             opacity: 0.9;
         }
+
+        .header .official-website {
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-top: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header .verified-badge { width: 24px; height: 24px; }
 
         /* Navigation Menu */
         .nav-menu {
@@ -470,6 +481,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .header h1 { font-size: 1.8rem; }
+            .header .new-tagline { font-size: 1rem; }
             .nav-menu a { font-size: 0.85rem; padding: 6px 12px; }
             .slider-container { height: 200px; }
             .slide { width: 200px; }
@@ -482,6 +494,9 @@
 
         @media (max-width: 480px) {
             .header h1 { font-size: 1.5rem; }
+            .header .new-tagline { font-size: 0.9rem; }
+            .header .official-website { font-size: 0.8rem; }
+            .header .verified-badge { width: 20px; height: 20px; }
             .nav-menu ul { gap: 5px; }
             .nav-menu a { font-size: 0.8rem; padding: 5px 10px; }
             .slider-container { height: 150px; }
@@ -503,14 +518,17 @@
             <div class="header-content">
                 <h1>
                     <span class="kopiko-white">KOPIKO</span>
-                    <span class="coffee-yellow">COFFEE </span>
+                    <span class="coffee-yellow">COFFEE</span>
                 </h1>
+            </div>
+            <p class="new-tagline">Kopiko is the #1 coffee mix in the Philippines</p>
+            <div class="official-website">
+                <span>Official website</span>
                 <svg class="verified-badge" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
                     <path fill="#FFFFFF" d="m9.29 16.29-4.58-4.59L6.12 10.3l3.17 3.17 7.42-7.42L18.12 7.5 9.29 16.29z"></path>
                 </svg>
             </div>
-            <p class="tagline">Araw-araw na Papremyo</p>
         </div>
     </header>
 
