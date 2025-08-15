@@ -98,6 +98,34 @@
 
         .header .verified-badge { width: 24px; height: 24px; }
 
+        /* User Greeting */
+        .user-greeting {
+            background-color: #fff;
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            color: #2F5233;
+            font-weight: 400;
+            margin-bottom: 20px;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        .user-greeting.long-name {
+            font-size: 0.9rem;
+        }
+
+        .profile-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
         /* Navigation Menu */
         .nav-menu {
             background-color: #fff;
@@ -132,6 +160,20 @@
             color: #fff;
         }
 
+        /* Beeping Effect for Promo Duration */
+        #nav-duration {
+            position: relative;
+        }
+
+        #nav-duration.beep {
+            animation: beep 1s infinite;
+        }
+
+        @keyframes beep {
+            0%, 100% { background-color: #2F5233; color: #fff; }
+            50% { background-color: #A42A28; color: #fff; }
+        }
+
         /* Image Slider */
         .slider-container {
             width: 100%;
@@ -145,7 +187,7 @@
         .slider {
             display: flex;
             height: 100%;
-            width: calc(300px * 12); /* 6 images + 6 duplicates for seamless loop */
+            width: calc(300px * 12);
             animation: autoScroll 30s linear infinite;
         }
 
@@ -159,7 +201,7 @@
 
         @keyframes autoScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-1800px); } /* Move by the width of 6 images */
+            100% { transform: translateX(-1800px); }
         }
 
         /* Main Content */
@@ -306,6 +348,14 @@
             line-height: 1.6;
         }
 
+        .countdown-text {
+            font-size: 0.9rem;
+            color: #A42A28;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
         .modal-close-btn {
             position: absolute;
             top: 10px;
@@ -317,6 +367,162 @@
 
         .modal-close-btn:hover {
             color: #333;
+        }
+
+        /* Promo End Modal */
+        .promo-end-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .promo-end-box {
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .promo-end-box h2 {
+            font-size: 1.8rem;
+            color: #A42A28;
+            margin-bottom: 20px;
+        }
+
+        .promo-end-box p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* Registration Modal */
+        .registration-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .registration-form label {
+            font-size: 0.95rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .registration-form input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .registration-form button {
+            background-color: #2F5233;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .registration-form button:hover {
+            background-color: #1e3a22;
+        }
+
+        .error-message {
+            color: #A42A28;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .mobile-note {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        .loading-container {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2F5233;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+        }
+
+        .success-message small {
+            font-size: 0.8rem;
+            color: #555;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Profile Modal */
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .profile-form label {
+            font-size: 0.95rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .profile-form input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .profile-form button {
+            background-color: #2F5233;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .profile-form button:hover {
+            background-color: #1e3a22;
+        }
+
+        .profile-form button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
 
         /* Redeem Modal */
@@ -462,6 +668,24 @@
             background-color: #fafafa;
         }
 
+        /* View More Link */
+        .view-more {
+            font-size: 0.95rem;
+            color: #2F5233;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .view-more a {
+            color: #0066CC;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .view-more a:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         .footer {
             background-color: #2F5233;
@@ -490,6 +714,8 @@
             .promo-form iframe { height: 600px; }
             .reminder-step .step-number { font-size: 1.8rem; }
             .modal-box { padding: 20px; }
+            .user-greeting { font-size: 0.9rem; padding: 8px 12px; }
+            .user-greeting.long-name { font-size: 0.8rem; }
         }
 
         @media (max-width: 480px) {
@@ -503,10 +729,20 @@
             .slide { width: 150px; }
             .slider { width: calc(150px * 12); }
             .promo-section { padding: 20px; }
+            .user-greeting { font-size: 0.85rem; padding: 6px 10px; }
+            .user-greeting.long-name { font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
+    <!-- Promo End Modal -->
+    <div id="promo-end-modal" class="promo-end-modal" style="display: none;">
+        <div class="promo-end-box">
+            <h2>PROMO ENDED</h2>
+            <p>Thank you for participating in the Kopiko Blanca Unlicash Araw-Araw Promo!</p>
+        </div>
+    </div>
+
     <!-- Scrolling Winner Banner -->
     <div class="winner-banner">
         <p id="winner-text">🎉 Congratulations to our latest winners! Keep sending entries!</p>
@@ -549,14 +785,12 @@
     <!-- Image Slider -->
     <div class="slider-container">
         <div class="slider">
-            <!-- Original set of images -->
             <img class="slide" src="https://i.ibb.co/nqnWTnB6/1752905058717.jpg" alt="Promo Image 1">
             <img class="slide" src="https://i.ibb.co/m5n3NHCH/IMG-20250720-165617.jpg" alt="Promo Image 2">
             <img class="slide" src="https://i.ibb.co/vFKBkZr/1752906975200.jpg" alt="Promo Image 3">
             <img class="slide" src="https://i.ibb.co/C3Pvxmv0/1752906968453.jpg" alt="Promo Image 4">
             <img class="slide" src="https://i.ibb.co/pvkKBDM7/1752906963439.jpg" alt="Promo Image 5">
             <img class="slide" src="https://i.ibb.co/SDFG5Q7T/1752906958312.jpg" alt="Promo Image 6">
-            <!-- Duplicated set for seamless looping -->
             <img class="slide" src="https://i.ibb.co/nqnWTnB6/1752905058717.jpg" alt="Promo Image 1">
             <img class="slide" src="https://i.ibb.co/m5n3NHCH/IMG-20250720-165617.jpg" alt="Promo Image 2">
             <img class="slide" src="https://i.ibb.co/vFKBkZr/1752906975200.jpg" alt="Promo Image 3">
@@ -571,10 +805,19 @@
         <div class="container">
             <section class="announcement-box">
                 <h2>Announcements & Updates</h2>
-                <p><strong>Stay Safe:</strong> Beware of text scams. Report suspicious messages to the National Telecommunications Commission (NTC) at (02) 8920 4464, (02) 8926 7722, or (02) 8921 3251, or to the PNP Anti-Cybercrime Group at 0998-598-8116.</p>
+                <p><strong>Website Update:</strong>Pagbabago sa Proseso ng Pagpaparehistro
+Upang mas mapadali ang inyong karanasan sa Kopiko Blanca Unlicash Araw-Araw Promo, inalis na ang mga field para sa pangalan at numero sa form ng pagpaparehistro. Ang impormasyong ito ay awtomatikong nase-save na sa sistema kapag nagsumite kayo ng inyong entry.</p><p><strong>
                 <h2>Winner of ₱1 Million (August 8, 2025)</h2>
                 <p><strong>🎉 Congratulations, Lovella R. Ibarra from North Luzon!</strong> You’re the lucky winner of ₱1 MILLION in the Kopiko Blanca Unlicash Araw-Araw Promo! 🥳 Stay tuned for the next winner announcement on August 15, 2025!</p>
             </section>
+
+            <div class="user-greeting" id="user-greeting">
+                <span id="greeting"></span>
+                <span id="user-name"></span>
+                <svg class="profile-icon" id="profile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </div>
 
             <section id="promo-form-section" class="promo-section">
                 <h3>Win GCash Daily!</h3>
@@ -611,7 +854,66 @@
         <p class="footer-note">Official promotion page. Per DTI Fair Trade Permit No. FTEB-00193743 Series of 2025.</p>
     </footer>
 
-    <!-- Modals -->
+    <!-- Registration Modal -->
+    <div id="registration-modal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="modal-close-btn">×</span>
+            <h2>Magrehistro ng account upang makasali</h2>
+            <p>Punan ang form sa ibaba upang makasali sa Kopiko Blanca Unlicash Araw-Araw Promo at magkaroon ng pagkakataon na manalo ng GCash at ₱1 Million!</p>
+            <div id="registration-form-view">
+                <form id="registration-form" class="registration-form">
+                    <label for="full-name">Kumpletong Pangalan</label>
+                    <input type="text" id="full-name" placeholder="Kumpletong Pangalan" required>
+                    <label for="mobile-number">Mobile Number</label>
+                    <input type="tel" id="mobile-number" placeholder="09xxxxxxxxx" pattern="09[0-9]{9}" required>
+                    <p class="mobile-note">Siguraduhing tama ang numero, gagamitin ito para kontakin ka kung ikaw ang mananalo.</p>
+                    <label for="age">Edad</label>
+                    <input type="number" id="age" placeholder="Edad" required>
+                    <p id="registration-error" class="error-message"></p>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div id="registration-loading" class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Registering...</p>
+            </div>
+            <div id="registration-success" class="success-message">
+                <h3>Register Completed</h3>
+                <small>Kung gumagamit ka ng ibang browser, maaaring kailanganin kang magrehistro muli. Huwag mag-alala, ang impormasyong ito ay gagamitin lamang upang i-verify ang iyong pagkakakilanlan.</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="modal-close-btn">×</span>
+            <h2>Edit Profile</h2>
+            <p id="edit-count-message">Maaari kang mag-edit ng profile ng 3 beses. Natitirang pagbabago: <span id="edit-count">3</span></p>
+            <div id="profile-form-view">
+                <form id="profile-form" class="profile-form">
+                    <label for="edit-full-name">Kumpletong Pangalan</label>
+                    <input type="text" id="edit-full-name" required>
+                    <label for="edit-mobile-number">Mobile Number</label>
+                    <input type="tel" id="edit-mobile-number" pattern="09[0-9]{9}" required>
+                    <p class="mobile-note">Siguraduhing tama ang numero, ito ang gagamitin para kontakin ka kung ikaw ang mananalo.</p>
+                    <label for="edit-age">Edad</label>
+                    <input type="number" id="edit-age" required>
+                    <p id="profile-error" class="error-message"></p>
+                    <button type="submit" id="profile-submit-btn">Save Changes</button>
+                </form>
+            </div>
+            <div id="profile-loading" class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Saving...</p>
+            </div>
+            <div id="profile-success" class="success-message">
+                <h3>Napalitan ng Matagumpay</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Modals -->
     <div id="redeem-modal" class="modal-overlay">
         <div class="modal-box">
             <span class="modal-close-btn">×</span>
@@ -705,6 +1007,9 @@
             <div class="winner-section">
                 <p><strong>Lovella R. Ibarra (North Luzon)</strong><br>Winner on August 8, 2025<br>Congratulations! Await the call from official Kopiko Coffee for prize instructions.<br><small>The weekly raffle draws are supervised and verified by official DOH-FDA CFRR Representatives. Per DOH-FDA CFRR Permit No. 1800 s. 2024</small></p>
             </div>
+            <div class="view-more">
+                <p>View more? <a href="https://facebook.com/groups/1723191631652694/" target="_blank">Join our group for more details</a></p>
+            </div>
         </div>
     </div>
 
@@ -713,6 +1018,7 @@
             <span class="modal-close-btn">×</span>
             <h2>Promo Duration</h2>
             <p>Promo runs from April 21, 2025, to August 31, 2025. Submit your codes before the deadline!</p>
+            <div class="countdown-text" id="countdown"></div>
         </div>
     </div>
 
@@ -729,13 +1035,233 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Promo End Check
+            const promoEndDate = new Date('2025-09-01T00:00:00');
+            const currentDate = new Date('2025-08-15T14:30:00'); // Current date: August 15, 2025, 02:30 PM PST
+            if (currentDate >= promoEndDate) {
+                document.getElementById('promo-end-modal').style.display = 'flex';
+                document.querySelector('.main-content').style.display = 'none';
+                document.querySelector('.header').style.display = 'none';
+                document.querySelector('.nav-menu').style.display = 'none';
+                document.querySelector('.slider-container').style.display = 'none';
+                document.querySelector('.winner-banner').style.display = 'none';
+                document.querySelector('.footer').style.display = 'none';
+                return;
+            }
+
+            // Helper function to get greeting based on time
+            const getGreeting = () => {
+                const hour = new Date().getHours();
+                if (hour < 12) return 'Magandang Umaga';
+                else if (hour < 18) return 'Magandang Hapon';
+                else return 'Magandang Gabi';
+            };
+
+            // Countdown Timer
+            const countdownElement = document.getElementById('countdown');
+            const updateCountdown = () => {
+                const now = new Date();
+                const timeDiff = promoEndDate - now;
+                if (timeDiff <= 0) {
+                    countdownElement.style.display = 'none';
+                    document.getElementById('nav-duration').classList.remove('beep');
+                    return;
+                }
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+                countdownElement.textContent = `Natitirang oras bago matapos ang promo: ${days} araw, ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} - Magpadala ng mga entry para sa pagkakataong manalo sa grand draw!`;
+
+                // Add beeping effect if less than 30 days remain
+                if (days <= 30) {
+                    document.getElementById('nav-duration').classList.add('beep');
+                }
+            };
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // Check if user is registered
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            const registrationModal = document.getElementById('registration-modal');
+            const registrationFormView = document.getElementById('registration-form-view');
+            const registrationLoading = document.getElementById('registration-loading');
+            const registrationSuccess = document.getElementById('registration-success');
+            const registrationForm = document.getElementById('registration-form');
+            const registrationError = document.getElementById('registration-error');
+            const profileModal = document.getElementById('profile-modal');
+            const profileFormView = document.getElementById('profile-form-view');
+            const profileLoading = document.getElementById('profile-loading');
+            const profileSuccess = document.getElementById('profile-success');
+            const profileForm = document.getElementById('profile-form');
+            const profileError = document.getElementById('profile-error');
+            const userNameDisplay = document.getElementById('user-name');
+            const greetingDisplay = document.getElementById('greeting');
+            const userGreetingContainer = document.getElementById('user-greeting');
+            const editCountDisplay = document.getElementById('edit-count');
+            const profileSubmitBtn = document.getElementById('profile-submit-btn');
+
+            // Initialize edit count
+            let editCount = parseInt(localStorage.getItem('editCount')) || 3;
+            editCountDisplay.textContent = editCount;
+            if (editCount <= 0) {
+                profileSubmitBtn.disabled = true;
+            }
+
+            // Show user data if registered and handle long names
+            if (userData) {
+                greetingDisplay.textContent = `${getGreeting()}, `;
+                userNameDisplay.textContent = userData.fullName;
+                if (userData.fullName.length > 20) {
+                    userGreetingContainer.classList.add('long-name');
+                }
+            } else {
+                registrationModal.classList.add('show');
+            }
+
+            // Handle registration form submission
+            registrationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const fullName = document.getElementById('full-name').value.trim();
+                const mobileNumber = document.getElementById('mobile-number').value.trim();
+                const age = parseInt(document.getElementById('age').value);
+
+                // Validation
+                if (!fullName) {
+                    registrationError.textContent = 'Punan ang kumpletong pangalan.';
+                    registrationError.style.display = 'block';
+                    return;
+                }
+                if (!/09[0-9]{9}/.test(mobileNumber) || mobileNumber.length !== 11) {
+                    registrationError.textContent = 'Maglagay ng wastong 11-digit na mobile number (09xxxxxxxxx).';
+                    registrationError.style.display = 'block';
+                    return;
+                }
+                if (isNaN(age) || age < 18) {
+                    registrationError.textContent = 'Dapat 18 taong gulang o higit pa.';
+                    registrationError.style.display = 'block';
+                    return;
+                }
+
+                registrationError.style.display = 'none';
+                registrationFormView.style.display = 'none';
+                registrationLoading.style.display = 'block';
+
+                // Simulate server delay (2-5 seconds)
+                const randomDelay = Math.floor(Math.random() * 3000) + 2000;
+                setTimeout(() => {
+                    registrationLoading.style.display = 'none';
+                    registrationSuccess.style.display = 'block';
+
+                    // Save to localStorage
+                    const userData = { fullName, mobileNumber, age };
+                    localStorage.setItem('userData', JSON.stringify(userData));
+
+                    // Update greeting
+                    greetingDisplay.textContent = `${getGreeting()}, `;
+                    userNameDisplay.textContent = fullName;
+                    if (fullName.length > 20) {
+                        userGreetingContainer.classList.add('long-name');
+                    }
+
+                    // Close modal after 2 seconds
+                    setTimeout(() => {
+                        registrationModal.classList.remove('show');
+                    }, 2000);
+                }, randomDelay);
+            });
+
+            // Handle profile icon click
+            document.getElementById('profile-icon').addEventListener('click', () => {
+                if (userData) {
+                    document.getElementById('edit-full-name').value = userData.fullName;
+                    document.getElementById('edit-mobile-number').value = userData.mobileNumber;
+                    document.getElementById('edit-age').value = userData.age || '';
+                    profileModal.classList.add('show');
+                }
+            });
+
+            // Handle profile form submission
+            profileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (editCount <= 0) {
+                    profileError.textContent = 'Naabot mo na ang limitasyon ng 3 pagbabago sa profile.';
+                    profileError.style.display = 'block';
+                    return;
+                }
+
+                const fullName = document.getElementById('edit-full-name').value.trim();
+                const mobileNumber = document.getElementById('edit-mobile-number').value.trim();
+                const age = parseInt(document.getElementById('edit-age').value);
+
+                // Validation
+                if (!fullName) {
+                    profileError.textContent = 'Punan ang kumpletong pangalan.';
+                    profileError.style.display = 'block';
+                    return;
+                }
+                if (!/09[0-9]{9}/.test(mobileNumber) || mobileNumber.length !== 11) {
+                    profileError.textContent = 'Maglagay ng wastong 11-digit na mobile number (09xxxxxxxxx).';
+                    profileError.style.display = 'block';
+                    return;
+                }
+                if (isNaN(age) || age < 18) {
+                    profileError.textContent = 'Dapat 18 taong gulang o higit pa.';
+                    profileError.style.display = 'block';
+                    return;
+                }
+
+                profileError.style.display = 'none';
+                profileFormView.style.display = 'none';
+                profileLoading.style.display = 'block';
+
+                // Simulate server delay (2-5 seconds)
+                const randomDelay = Math.floor(Math.random() * 3000) + 2000;
+                setTimeout(() => {
+                    profileLoading.style.display = 'none';
+                    profileSuccess.style.display = 'block';
+
+                    // Update localStorage
+                    const updatedUserData = { fullName, mobileNumber, age };
+                    localStorage.setItem('userData', JSON.stringify(updatedUserData));
+
+                    // Decrease edit count
+                    editCount--;
+                    localStorage.setItem('editCount', editCount);
+                    editCountDisplay.textContent = editCount;
+                    if (editCount <= 0) {
+                        profileSubmitBtn.disabled = true;
+                    }
+
+                    // Update greeting
+                    greetingDisplay.textContent = `${getGreeting()}, `;
+                    userNameDisplay.textContent = fullName;
+                    if (fullName.length > 20) {
+                        userGreetingContainer.classList.add('long-name');
+                    } else {
+                        userGreetingContainer.classList.remove('long-name');
+                    }
+
+                    // Close modal after 2 seconds
+                    setTimeout(() => {
+                        profileModal.classList.remove('show');
+                        profileSuccess.style.display = 'none';
+                        profileFormView.style.display = 'block';
+                    }, 2000);
+                }, randomDelay);
+            });
+
             // Scrolling Winner Banner
             const winnerText = document.getElementById('winner-text');
             const updateWinnerBanner = () => {
                 const prizes = [5, 10, 20, 50];
-                const randomNumber = '09' + Math.floor(100000000 + Math.random() * 900000000);
-                const maskedNumber = `${randomNumber.slice(0, 4)}****${randomNumber.slice(-4)}`;
-                const maskedName = `J***D`;
+                const prefixes = ['0955', '0917', '0927', '0995', '0916', '0936', '0921', '0945'];
+                const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                const randomSuffix = Math.floor(1000 + Math.random() * 9000).toString();
+                const maskedNumber = `${randomPrefix}***${randomSuffix}`;
+                const names = ['John', 'Maria', 'Jose', 'Anna', 'Mark', 'Liza', 'Carlo', 'Sofia', 'Ben', 'Clara', 'Rico', 'Elena', 'Tomas', 'Grace', 'Luis'];
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const maskedName = `${randomName[0]}***${randomName.slice(-1)}`;
                 winnerText.textContent = `🎉 Congratulations ${maskedNumber} (${maskedName}) on winning ₱${prizes[Math.floor(Math.random() * prizes.length)]}! Keep sending entries!`;
             };
             updateWinnerBanner();
@@ -805,11 +1331,16 @@
                 const tbody = document.getElementById('gcash-winners-tbody');
                 tbody.innerHTML = '';
                 const prizes = [5, 10, 20, 50];
-                for (let i = 0; i < 10; i++) {
-                    const number = `09${Math.floor(100000000 + Math.random() * 900000000)}`.slice(0, 4) + '****' + Math.floor(1000 + Math.random() * 9000);
-                    const name = `A***Z`;
+                const prefixes = ['0955', '0917', '0927', '0995', '0916', '0936', '0921', '0945'];
+                const names = ['John', 'Maria', 'Jose', 'Anna', 'Mark', 'Liza', 'Carlo', 'Sofia', 'Ben', 'Clara', 'Rico', 'Elena', 'Tomas', 'Grace', 'Luis', 'Nikki', 'Victor', 'Rose', 'Felix', 'Mira'];
+                for (let i = 0; i < 20; i++) {
+                    const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                    const randomSuffix = Math.floor(1000 + Math.random() * 9000).toString();
+                    const maskedNumber = `${randomPrefix}***${randomSuffix}`;
+                    const randomName = names[Math.floor(Math.random() * names.length)];
+                    const maskedName = `${randomName[0]}***${randomName.slice(-1)}`;
                     const prize = prizes[Math.floor(Math.random() * prizes.length)];
-                    tbody.innerHTML += `<tr><td>${number}</td><td>${name}</td><td>₱${prize}</td></tr>`;
+                    tbody.innerHTML += `<tr><td>${maskedNumber}</td><td>${maskedName}</td><td>₱${prize}</td></tr>`;
                 }
             };
 
