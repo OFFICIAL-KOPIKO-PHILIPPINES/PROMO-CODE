@@ -369,6 +369,64 @@
             color: #333;
         }
 
+        /* Sponsor Task Modal */
+        .sponsor-task-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sponsor-task-content img {
+            max-width: 50%;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .download-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .download-box {
+            position: relative;
+            text-align: center;
+        }
+
+        .download-box a {
+            display: inline-block;
+            background-color: #2F5233;
+            color: #fff;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .download-box a:hover {
+            background-color: #1e3a22;
+        }
+
+        .download-box small {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #A42A28;
+            font-weight: 500;
+        }
+
+        .sponsor-form iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            margin-top: 20px;
+        }
+
         /* Promo End Modal */
         .promo-end-modal {
             position: fixed;
@@ -712,6 +770,8 @@
             .slider { width: calc(200px * 12); animation: autoScroll 30s linear infinite; }
             @keyframes autoScroll { 100% { transform: translateX(-1200px); } }
             .promo-form iframe { height: 600px; }
+            .sponsor-task-content img { max-width: 100%; }
+            .sponsor-form iframe { height: 500px; }
             .reminder-step .step-number { font-size: 1.8rem; }
             .modal-box { padding: 20px; }
             .user-greeting { font-size: 0.9rem; padding: 8px 12px; }
@@ -731,6 +791,9 @@
             .promo-section { padding: 20px; }
             .user-greeting { font-size: 0.85rem; padding: 6px 10px; }
             .user-greeting.long-name { font-size: 0.75rem; }
+            .download-container { flex-direction: column; }
+            .sponsor-task-content img { max-width: 100%; }
+            .sponsor-form iframe { height: 450px; }
         }
     </style>
 </head>
@@ -777,6 +840,7 @@
                 <li><a id="nav-prizes">Prizes</a></li>
                 <li><a id="nav-winners">Winners</a></li>
                 <li><a id="nav-duration">Promo Duration</a></li>
+                <li><a id="nav-sponsor">Sponsor Task</a></li>
                 <li><a id="nav-privacy">Data Privacy</a></li>
             </ul>
         </div>
@@ -804,9 +868,8 @@
     <main class="main-content">
         <div class="container">
             <section class="announcement-box">
-                <h2>Announcements & Updates</h2>
-                <p><strong>Website Update:</strong>Pagbabago sa Proseso ng Pagpaparehistro
-Upang mas mapadali ang inyong karanasan sa Kopiko Blanca Unlicash Araw-Araw Promo, inalis na ang mga field para sa pangalan at numero sa form ng pagpaparehistro. Ang impormasyong ito ay awtomatikong nase-save na sa sistema kapag nagsumite kayo ng inyong entry.</p><p><strong>
+                <h2>Exciting News for Our Loyal Kopiko Fans! 🎉</h2>
+                <p><strong>Get FREE Raffle Entries!</strong> Bilang pasasalamat sa aming mga tapat na tagahanga ng Kopiko, Click sponsor task upang mabigyan kayo ng LIBRENG raffle entries! 😲☕ Magpadala lang ng inyong promo codes at awtomatikong makakakuha ng dagdag na entries para sa mas malaking tsansang manalo ng GCash at ₱1 Million! Huwag palampasin ang espesyal na regalong ito—sumali na at maging susunod na milyonaryo! 🏆</p>
                 <h2>Winner of ₱1 Million (August 8, 2025)</h2>
                 <p><strong>🎉 Congratulations, Lovella R. Ibarra from North Luzon!</strong> You’re the lucky winner of ₱1 MILLION in the Kopiko Blanca Unlicash Araw-Araw Promo! 🥳 Stay tuned for the next winner announcement!</p>
             </section>
@@ -909,6 +972,24 @@ Upang mas mapadali ang inyong karanasan sa Kopiko Blanca Unlicash Araw-Araw Prom
             </div>
             <div id="profile-success" class="success-message">
                 <h3>Napalitan ng Matagumpay</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sponsor Task Modal -->
+    <div id="sponsor-modal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="modal-close-btn">×</span>
+            <h2>Sponsor Task</h2>
+            <div class="sponsor-task-content">
+                <p>Dahil sa nalalapit na pagtatapos ng ating promo, may special promo task kami para sa’yo! I-click at i-download ang app at mag sign in, sa bawat download mo may free 5 pesos at dalawang(+2) additional entries kana! 😲🎉 Take an screenshot of Every successful Sign in and Send us the proof for your verification. </p>
+                <div class="download-container">
+                    <img src="https://i.ibb.co/27WZBLmp/IMG-20250820-170552.jpg" alt="Proof of Download Example">
+                    <div class="download-box">
+                        <small>x2 entries</small>
+                        <a href="https://official-kopiko-philippines.github.io/Sponsored-App/app.html" target="_blank">CLICK HERE </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1037,7 +1118,7 @@ Upang mas mapadali ang inyong karanasan sa Kopiko Blanca Unlicash Araw-Araw Prom
         document.addEventListener('DOMContentLoaded', () => {
             // Promo End Check
             const promoEndDate = new Date('2025-09-01T00:00:00');
-            const currentDate = new Date('2025-08-15T14:30:00'); // Current date: August 15, 2025, 02:30 PM PST
+            const currentDate = new Date('2025-08-20T23:03:00'); // Updated to current date: August 20, 2025, 11:03 PM PST
             if (currentDate >= promoEndDate) {
                 document.getElementById('promo-end-modal').style.display = 'flex';
                 document.querySelector('.main-content').style.display = 'none';
@@ -1273,6 +1354,7 @@ Upang mas mapadali ang inyong karanasan sa Kopiko Blanca Unlicash Araw-Araw Prom
                 'nav-prizes': 'prizes-modal',
                 'nav-winners': 'winners-modal',
                 'nav-duration': 'duration-modal',
+                'nav-sponsor': 'sponsor-modal',
                 'nav-privacy': 'privacy-modal'
             };
 
