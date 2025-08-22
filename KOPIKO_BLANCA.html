@@ -8,794 +8,808 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Scrolling Winner Banner */
-        .winner-banner {
-            background-color: #fff3cd;
-            color: #A42A28;
-            padding: 8px 0;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-align: center;
-            overflow: hidden;
-            white-space: nowrap;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1001;
-        }
-
-        .winner-banner p {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Header */
-        .header {
-            background-color: #2F5233;
-            padding: 20px 0;
-            text-align: center;
-            color: #fff;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .header .kopiko-white { color: #fff; }
-        .header .coffee-yellow { color: #FFC72C; }
-        .header .new-tagline {
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-top: 8px;
-            opacity: 0.9;
-        }
-
-        .header .official-website {
-            font-size: 0.9rem;
-            font-weight: 300;
-            margin-top: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .header .verified-badge { width: 24px; height: 24px; }
-
-        /* User Greeting */
-        .user-greeting {
-            background-color: #fff;
-            padding: 10px 15px;
-            border-radius: 6px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-            color: #2F5233;
-            font-weight: 400;
-            margin-bottom: 20px;
-            max-width: 100%;
-            word-wrap: break-word;
-        }
-
-        .user-greeting.long-name {
-            font-size: 0.9rem;
-        }
-
-        .profile-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        /* Navigation Menu */
-        .nav-menu {
-            background-color: #fff;
-            padding: 12px 0;
-            position: sticky;
-            top: 40px;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-menu ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: #2F5233;
-            font-weight: 500;
-            font-size: 0.9rem;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            background-color: #2F5233;
-            color: #fff;
-        }
-
-        /* Beeping Effect for Promo Duration */
-        #nav-duration {
-            position: relative;
-        }
-
-        #nav-duration.beep {
-            animation: beep 1s infinite;
-        }
-
-        @keyframes beep {
-            0%, 100% { background-color: #2F5233; color: #fff; }
-            50% { background-color: #A42A28; color: #fff; }
-        }
-
-        /* Image Slider */
-        .slider-container {
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .slider {
-            display: flex;
-            height: 100%;
-            width: calc(300px * 12);
-            animation: autoScroll 30s linear infinite;
-        }
-
-        .slide {
-            width: 300px;
-            height: 100%;
-            object-fit: cover;
-            flex-shrink: 0;
-            border-radius: 8px;
-        }
-
-        @keyframes autoScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-1800px); }
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 20px 0;
-        }
-
-        .announcement-box {
-            background-color: #fffde7;
-            border-left: 5px solid #D4AC0D;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .announcement-box h2 {
-            font-size: 1.2rem;
-            color: #A42A28;
-            margin-bottom: 10px;
-        }
-
-        .announcement-box p {
-            font-size: 0.95rem;
-            color: #333;
-        }
-
-        .promo-section {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-
-        .promo-section h3 {
-            font-size: 1.6rem;
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-
-        .promo-section p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .promo-form iframe {
-            width: 100%;
-            height: 520px;
-            border: none;
-        }
-
-        /* Reminder Section */
-        .reminder-section {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .reminder-section h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #A42A28;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .reminder-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .reminder-step .step-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2F5233;
-        }
-
-        .reminder-step .step-text {
-            font-size: 1rem;
-            color: #333;
-        }
-
-        .reminder-image-container img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-box {
-            background: #fff;
-            border-radius: 8px;
-            padding: 25px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        .modal-overlay.show .modal-box {
-            transform: scale(1);
-        }
-
-        .modal-box h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2F5233;
-            margin-bottom: 15px;
-        }
-
-        .modal-box p {
-            font-size: 0.95rem;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .countdown-text {
-            font-size: 0.9rem;
-            color: #A42A28;
-            text-align: center;
-            margin-top: 15px;
-            font-weight: 500;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-            color: #666;
-            cursor: pointer;
-        }
-
-        .modal-close-btn:hover {
-            color: #333;
-        }
-
-        /* Sponsor Task Modal */
-        .sponsor-task-content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .sponsor-task-content img {
-            max-width: 50%;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .download-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .download-box {
-            position: relative;
-            text-align: center;
-        }
-
-        .download-box a {
-            display: inline-block;
-            background-color: #2F5233;
-            color: #fff;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-
-        .download-box a:hover {
-            background-color: #1e3a22;
-        }
-
-        .download-box small {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.75rem;
-            color: #A42A28;
-            font-weight: 500;
-        }
-
-        .sponsor-form iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            margin-top: 20px;
-        }
-
-        /* Promo End Modal */
-        .promo-end-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-        }
-
-        .promo-end-box {
-            background: #fff;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .promo-end-box h2 {
-            font-size: 1.8rem;
-            color: #A42A28;
-            margin-bottom: 20px;
-        }
-
-        .promo-end-box p {
-            font-size: 1rem;
-            color: #333;
-        }
-
-        /* Registration Modal */
-        .registration-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .registration-form label {
-            font-size: 0.95rem;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .registration-form input {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-
-        .registration-form button {
-            background-color: #2F5233;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .registration-form button:hover {
-            background-color: #1e3a22;
-        }
-
-        .error-message {
-            color: #A42A28;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        .mobile-note {
-            font-size: 0.85rem;
-            color: #555;
-            margin-top: -10px;
-            margin-bottom: 10px;
-        }
-
-        .loading-container {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #2F5233;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .success-message {
-            display: none;
-            text-align: center;
-        }
-
-        .success-message small {
-            font-size: 0.8rem;
-            color: #555;
-            display: block;
-            margin-top: 10px;
-        }
-
-        /* Profile Modal */
-        .profile-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .profile-form label {
-            font-size: 0.95rem;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .profile-form input {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-
-        .profile-form button {
-            background-color: #2F5233;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .profile-form button:hover {
-            background-color: #1e3a22;
-        }
-
-        .profile-form button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        /* Redeem Modal */
-        #redeem-mobile-number {
-            width: 100%;
-            padding: 12px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin: 10px 0;
-        }
-
-        #verify-number-btn {
-            background-color: #2F5233;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        #verify-number-btn:hover {
-            background-color: #1e3a22;
-        }
-
-        #redeem-error-message {
-            color: #A42A28;
-            font-size: 0.9rem;
-            display: none;
-            margin: 10px 0;
-        }
-
-        .congrats-message h3 {
-            font-size: 1.5rem;
-            color: #2F5233;
-            margin-bottom: 10px;
-        }
-
-        .code-container {
-            background-color: #f5f5f5;
-            border: 2px dashed #ccc;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        #redeem-code-display {
-            font-family: 'Courier New', monospace;
-            font-size: 1.4rem;
-            font-weight: bold;
-        }
-
-        #copy-code-icon {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        #copy-feedback {
-            font-size: 0.85rem;
-            color: #2F5233;
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.3s;
-        }
-
-        #copy-feedback.show {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        #proceed-to-gcash-btn {
-            background-color: #0066CC;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-
-        #proceed-to-gcash-btn:hover {
-            background-color: #004c99;
-        }
-
-        /* Winners Modal */
-        .winner-section {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .winner-section:last-child {
-            border-bottom: none;
-        }
-
-        .winner-section h3 {
-            font-size: 1.3rem;
-            color: #A42A28;
-            margin-bottom: 10px;
-        }
-
-        .winner-photo img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .winners-list-container {
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #eee;
-            border-radius: 6px;
-            margin-top: 10px;
-        }
-
-        .gcash-winners-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-
-        .gcash-winners-table th,
-        .gcash-winners-table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        .gcash-winners-table th {
-            background-color: #f5f5f5;
-            font-weight: 500;
-            position: sticky;
-            top: 0;
-        }
-
-        .gcash-winners-table tr:nth-child(even) {
-            background-color: #fafafa;
-        }
-
-        /* View More Link */
-        .view-more {
-            font-size: 0.95rem;
-            color: #2F5233;
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .view-more a {
-            color: #0066CC;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .view-more a:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #2F5233;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            font-size: 0.9rem;
-        }
-
-        .footer .footer-note {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-top: 10px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header h1 { font-size: 1.8rem; }
-            .header .new-tagline { font-size: 1rem; }
-            .nav-menu a { font-size: 0.85rem; padding: 6px 12px; }
-            .slider-container { height: 200px; }
-            .slide { width: 200px; }
-            .slider { width: calc(200px * 12); animation: autoScroll 30s linear infinite; }
-            @keyframes autoScroll { 100% { transform: translateX(-1200px); } }
-            .promo-form iframe { height: 600px; }
-            .sponsor-task-content img { max-width: 100%; }
-            .sponsor-form iframe { height: 500px; }
-            .reminder-step .step-number { font-size: 1.8rem; }
-            .modal-box { padding: 20px; }
-            .user-greeting { font-size: 0.9rem; padding: 8px 12px; }
-            .user-greeting.long-name { font-size: 0.8rem; }
-        }
-
-        @media (max-width: 480px) {
-            .header h1 { font-size: 1.5rem; }
-            .header .new-tagline { font-size: 0.9rem; }
-            .header .official-website { font-size: 0.8rem; }
-            .header .verified-badge { width: 20px; height: 20px; }
-            .nav-menu ul { gap: 5px; }
-            .nav-menu a { font-size: 0.8rem; padding: 5px 10px; }
-            .slider-container { height: 150px; }
-            .slide { width: 150px; }
-            .slider { width: calc(150px * 12); }
-            .promo-section { padding: 20px; }
-            .user-greeting { font-size: 0.85rem; padding: 6px 10px; }
-            .user-greeting.long-name { font-size: 0.75rem; }
-            .download-container { flex-direction: column; }
-            .sponsor-task-content img { max-width: 100%; }
-            .sponsor-form iframe { height: 450px; }
-        }
-    </style>
+ <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Roboto', Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Scrolling Winner Banner */
+    .winner-banner {
+        background-color: #fff3cd;
+        color: #A42A28;
+        padding: 8px 0;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1001;
+    }
+
+    .winner-banner p {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 15s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* Header */
+    .header {
+        background-color: #2F5233;
+        padding: 20px 0;
+        text-align: center;
+        color: #fff;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .header .kopiko-white { color: #fff; }
+    .header .coffee-yellow { color: #FFC72C; }
+    .header .new-tagline {
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin-top: 8px;
+        opacity: 0.9;
+    }
+
+    .header .official-website {
+        font-size: 0.9rem;
+        font-weight: 300;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .header .verified-badge { width: 24px; height: 24px; }
+
+    /* User Greeting */
+    .user-greeting {
+        background-color: #fff;
+        padding: 10px 15px;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+        color: #2F5233;
+        font-weight: 400;
+        margin-bottom: 20px;
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+
+    .user-greeting.long-name {
+        font-size: 0.9rem;
+    }
+
+    .profile-icon {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    /* Navigation Menu */
+    .nav-menu {
+        background-color: #fff;
+        padding: 12px 0;
+        position: sticky;
+        top: 40px;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu a {
+        text-decoration: none;
+        color: #2F5233;
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        background-color: #red;
+        color: #fff;
+    }
+
+    /* Beating Effect for Sponsor Task */
+    #nav-sponsor {
+        position: relative;
+        animation: heartbeat 0.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+        0% { transform: scale(1); }
+        14% { transform: scale(1.1); }
+        28% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    /* Adjusted Beeping Effect for Promo Duration */
+    #nav-duration {
+        position: relative;
+    }
+
+    #nav-duration.beep {
+        animation: beep 1s infinite;
+    }
+
+    @keyframes beep {
+        0%, 100% { background-color: #2F5233; color: #fff; }
+        50% { background-color: #c95b5a; color: #fff; } /* Softened red color */
+    }
+
+    /* Image Slider */
+    .slider-container {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        margin: 20px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .slider {
+        display: flex;
+        height: 100%;
+        width: calc(300px * 12);
+        animation: autoScroll 30s linear infinite;
+    }
+
+    .slide {
+        width: 300px;
+        height: 100%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border-radius: 8px;
+    }
+
+    @keyframes autoScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-1800px); }
+    }
+
+    /* Main Content */
+    .main-content {
+        padding: 20px 0;
+    }
+
+    .announcement-box {
+        background-color: #fffde7;
+        border-left: 5px solid #D4AC0D;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .announcement-box h2 {
+        font-size: 1.2rem;
+        color: #A42A28;
+        margin-bottom: 10px;
+    }
+
+    .announcement-box p {
+        font-size: 0.95rem;
+        color: #333;
+    }
+
+    .promo-section {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 30px;
+    }
+
+    .promo-section h3 {
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    .promo-section p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .promo-form iframe {
+        width: 100%;
+        height: 520px;
+        border: none;
+    }
+
+    /* Reminder Section */
+    .reminder-section {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .reminder-section h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #A42A28;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .reminder-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .reminder-step .step-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2F5233;
+    }
+
+    .reminder-step .step-text {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .reminder-image-container img {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .modal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal-box {
+        background: #fff;
+        border-radius: 8px;
+        padding: 25px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.show .modal-box {
+        transform: scale(1);
+    }
+
+    .modal-box h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2F5233;
+        margin-bottom: 15px;
+    }
+
+    .modal-box p {
+        font-size: 0.95rem;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .countdown-text {
+        font-size: 0.9rem;
+        color: #A42A28;
+        text-align: center;
+        margin-top: 15px;
+        font-weight: 500;
+    }
+
+    .modal-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+        color: #666;
+        cursor: pointer;
+    }
+
+    .modal-close-btn:hover {
+        color: #333;
+    }
+
+    /* Sponsor Task Modal */
+    .sponsor-task-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sponsor-task-content img {
+        max-width: 50%;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .download-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .download-box {
+        position: relative;
+        text-align: center;
+    }
+
+    .download-box a {
+        display: inline-block;
+        background-color: #2F5233;
+        color: #fff;
+        padding: 12px 24px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    .download-box a:hover {
+        background-color: #1e3a22;
+    }
+
+    .download-box small {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.75rem;
+        color: #A42A28;
+        font-weight: 500;
+    }
+
+    .sponsor-form iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+        margin-top: 20px;
+    }
+
+    /* Promo End Modal */
+    .promo-end-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3000;
+    }
+
+    .promo-end-box {
+        background: #fff;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .promo-end-box h2 {
+        font-size: 1.8rem;
+        color: #A42A28;
+        margin-bottom: 20px;
+    }
+
+    .promo-end-box p {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    /* Registration Modal */
+    .registration-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .registration-form label {
+        font-size: 0.95rem;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .registration-form input {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .registration-form button {
+        background-color: #2F5233;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .registration-form button:hover {
+        background-color: #1e3a22;
+    }
+
+    .error-message {
+        color: #A42A28;
+        font-size: 0.9rem;
+        display: none;
+    }
+
+    .mobile-note {
+        font-size: 0.85rem;
+        color: #555;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+
+    .loading-container {
+        display: none;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .loading-spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #2F5233;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 10px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .success-message {
+        display: none;
+        text-align: center;
+    }
+
+    .success-message small {
+        font-size: 0.8rem;
+        color: #555;
+        display: block;
+        margin-top: 10px;
+    }
+
+    /* Profile Modal */
+    .profile-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .profile-form label {
+        font-size: 0.95rem;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .profile-form input {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .profile-form button {
+        background-color: #2F5233;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .profile-form button:hover {
+        background-color: #1e3a22;
+    }
+
+    .profile-form button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* Redeem Modal */
+    #redeem-mobile-number {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin: 10px 0;
+    }
+
+    #verify-number-btn {
+        background-color: #2F5233;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #verify-number-btn:hover {
+        background-color: #1e3a22;
+    }
+
+    #redeem-error-message {
+        color: #A42A28;
+        font-size: 0.9rem;
+        display: none;
+        margin: 10px 0;
+    }
+
+    .congrats-message h3 {
+        font-size: 1.5rem;
+        color: #2F5233;
+        margin-bottom: 10px;
+    }
+
+    .code-container {
+        background-color: #f5f5f5;
+        border: 2px dashed #ccc;
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    #redeem-code-display {
+        font-family: 'Courier New', monospace;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+
+    #copy-code-icon {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    #copy-feedback {
+        font-size: 0.85rem;
+        color: #2F5233;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s;
+    }
+
+    #copy-feedback.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    #proceed-to-gcash-btn {
+        background-color: #0066CC;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+    #proceed-to-gcash-btn:hover {
+        background-color: #004c99;
+    }
+
+    /* Winners Modal */
+    .winner-section {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .winner-section:last-child {
+        border-bottom: none;
+    }
+
+    .winner-section h3 {
+        font-size: 1.3rem;
+        color: #A42A28;
+        margin-bottom: 10px;
+    }
+
+    .winner-photo img {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .winners-list-container {
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        margin-top: 10px;
+    }
+
+    .gcash-winners-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+    }
+
+    .gcash-winners-table th,
+    .gcash-winners-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .gcash-winners-table th {
+        background-color: #f5f5f5;
+        font-weight: 500;
+        position: sticky;
+        top: 0;
+    }
+
+    .gcash-winners-table tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    /* View More Link */
+    .view-more {
+        font-size: 0.95rem;
+        color: #2F5233;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .view-more a {
+        color: #0066CC;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .view-more a:hover {
+        text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+        background-color: #2F5233;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+        font-size: 0.9rem;
+    }
+
+    .footer .footer-note {
+        font-size: 0.8rem;
+        opacity: 0.8;
+        margin-top: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .header h1 { font-size: 1.8rem; }
+        .header .new-tagline { font-size: 1rem; }
+        .nav-menu a { font-size: 0.85rem; padding: 6px 12px; }
+        .slider-container { height: 200px; }
+        .slide { width: 200px; }
+        .slider { width: calc(200px * 12); animation: autoScroll 30s linear infinite; }
+        @keyframes autoScroll { 100% { transform: translateX(-1200px); } }
+        .promo-form iframe { height: 600px; }
+        .sponsor-task-content img { max-width: 100%; }
+        .sponsor-form iframe { height: 500px; }
+        .reminder-step .step-number { font-size: 1.8rem; }
+        .modal-box { padding: 20px; }
+        .user-greeting { font-size: 0.9rem; padding: 8px 12px; }
+        .user-greeting.long-name { font-size: 0.8rem; }
+    }
+
+    @media (max-width: 480px) {
+        .header h1 { font-size: 1.5rem; }
+        .header .new-tagline { font-size: 0.9rem; }
+        .header .official-website { font-size: 0.8rem; }
+        .header .verified-badge { width: 20px; height: 20px; }
+        .nav-menu ul { gap: 5px; }
+        .nav-menu a { font-size: 0.8rem; padding: 5px 10px; }
+        .slider-container { height: 150px; }
+        .slide { width: 150px; }
+        .slider { width: calc(150px * 12); }
+        .promo-section { padding: 20px; }
+        .user-greeting { font-size: 0.85rem; padding: 6px 10px; }
+        .user-greeting.long-name { font-size: 0.75rem; }
+        .download-container { flex-direction: column; }
+        .sponsor-task-content img { max-width: 100%; }
+        .sponsor-form iframe { height: 450px; }
+    }
+</style>
 </head>
 <body>
     <!-- Promo End Modal -->
@@ -840,7 +854,7 @@
                 <li><a id="nav-prizes">Prizes</a></li>
                 <li><a id="nav-winners">Winners</a></li>
                 <li><a id="nav-duration">Promo Duration</a></li>
-                <li><a id="nav-sponsor">Sponsor Task</a></li>
+                <li><a id="nav-sponsor">Sponsor Task (FREE +2 RAFFLE)</a></li>
                 <li><a id="nav-privacy">Data Privacy</a></li>
             </ul>
         </div>
@@ -870,8 +884,11 @@
             <section class="announcement-box">
                 <h2>Exciting News for Our Loyal Kopiko Fans! 🎉</h2>
                 <p><strong>Get FREE Raffle Entries!</strong> Bilang pasasalamat sa aming mga tapat na tagahanga ng Kopiko, Click sponsor task upang mabigyan kayo ng LIBRENG raffle entries! 😲☕ Magpadala lang ng inyong promo codes at awtomatikong makakakuha ng dagdag na entries para sa mas malaking tsansang manalo ng GCash at ₱1 Million! Huwag palampasin ang espesyal na regalong ito—sumali na at maging susunod na milyonaryo! 🏆</p>
-                <h2>Winner of ₱1 Million (August 8, 2025)</h2>
-                <p><strong>🎉 Congratulations, Lovella R. Ibarra from North Luzon!</strong> You’re the lucky winner of ₱1 MILLION in the Kopiko Blanca Unlicash Araw-Araw Promo! 🥳 Stay tuned for the next winner announcement!</p>
+                <h2>Over 12 million na ka-Kopiko</h2>
+                <p><strong>🎉 OVER ₱12.7 MILLION NA GCASH NA ANG NAIPAMIGAY! 😱
+Don't miss your chance — sali na sa Kopiko Blanca UNLICASH Araw-Araw Promo!
+📅 </strong>Promo runs until August 31, 2025
+Per DOH-FDA CFRR Permit No. 1800 s. 2024</p>
             </section>
 
             <div class="user-greeting" id="user-greeting">
